@@ -37,30 +37,72 @@ variable "vm_web_image" {
   description = "VM OS image"
 }
 
-#variable "each_vm" {
-#  type = list(object({
-#    vm_name     = string
-#    cpu         = number
-#    ram         = number
-#    disk_volume = number
-#  }))
-#}
-
 variable "each_vm" {
-  default = [
-    {
-      vm_name     = "main"
-      cpu         = 4
-      ram         = 8
-      disk_volume = 50
-      core_fraction = 20
-    },
-    {
-      vm_name     = "replica"
-      cpu         = 2
-      ram         = 4
-      disk_volume = 30
-      core_fraction = 5
-    }
-  ]
+  type = list(object({
+    vm_name       = string
+    cores         = number
+    memory        = number
+    disk_volume   = number
+    core_fraction = number
+  }))
+}
+
+variable "hdd_vol_size" {
+  type = number
+  default = 1
+  description = "HDD volume size"
+}
+
+variable "hdd_quantity" {
+  type = number
+  default = 3
+  description = "quantity of HDD"
+}
+
+variable "web_inst_quantity" {
+  type = number
+  default = 2
+  description = "web wm instance quntity"
+}
+
+variable "web_resources" {
+  type = list(object({
+    cores         = number
+    memory        = number
+    core_fraction = number
+  }))
+}
+
+variable "storage_resources" {
+  type = list(object({
+    cores         = number
+    memory        = number
+    core_fraction = number
+  }))
+}
+
+variable "web_platform" {
+  type        = string
+  default     = "standard-v3"
+  description = "WM Platform"
+}
+
+variable "storage_platform" {
+  type        = string
+  default     = "standard-v3"
+  description = "WM Platform"
+}
+
+
+variable "each_platform" {
+  type        = string
+  default     = "standard-v3"
+  description = "WM Platform"
+}
+
+
+variable "storage_disk_type" {
+  type        = string
+  default     = "network-hdd"
+  description = "storage_disk_type"
 }

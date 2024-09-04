@@ -1,11 +1,11 @@
 resource "yandex_compute_instance" "web" {
-  count = 2
+  count = var.web_inst_quantity
   name = "web-${count.index + 1}"
-  platform_id = "standard-v3"
+  platform_id = var.web_platform
   resources {
-    cores         = 2
-    memory        = 2
-    core_fraction = 20
+    cores         = var.web_resources[0].cores
+    memory        = var.web_resources[0].memory
+    core_fraction = var.web_resources[0].core_fraction
   }
   
   boot_disk {

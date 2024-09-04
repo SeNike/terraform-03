@@ -1,22 +1,24 @@
 # Создание 3 виртуальных дисков размером 1 Гб
 
 resource "yandex_compute_disk" "storage_disk" {
-  count = 3
+  count = var.hdd_quantity
 
   name  = "storage-disk-${count.index + 1}"
-  size  = 1  # Размер диска в Гб
-  type  = "network-hdd"  # Тип диска
+  size  = var.hdd_vol_size  # Размер диска в Гб
+  type  = var.storage_disk_type # Тип диска
   zone  = var.default_zone
 }
 
 # Создание ВМ с именем "storage"
 resource "yandex_compute_instance" "storage" {
   name = "storage"
+  platform_id = var.storage_platform
+  allow_stopping_for_update = true
 
   resources {
-    cores  = 2
-    memory = 2
-    core_fraction = 20
+    cores  = var.storage_resources[0].cores
+    memory = var.storage_resources[0].memory
+    core_fraction = var.storage_resources[0].core_fraction
   }
 
   boot_disk {

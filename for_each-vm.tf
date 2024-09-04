@@ -1,12 +1,12 @@
 resource "yandex_compute_instance" "db" {
   for_each = { for vm in var.each_vm : vm.vm_name => vm }
-
+  platform_id = var.each_platform
   name = each.value.vm_name
   allow_stopping_for_update = true
 
   resources {
-    cores  = each.value.cpu
-    memory = each.value.ram
+    cores  = each.value.cores
+    memory = each.value.memory
     core_fraction = each.value.core_fraction
   }
 
