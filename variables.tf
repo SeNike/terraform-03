@@ -36,3 +36,31 @@ variable "vm_web_image" {
   default     = "ubuntu-2004-lts"
   description = "VM OS image"
 }
+
+#variable "each_vm" {
+#  type = list(object({
+#    vm_name     = string
+#    cpu         = number
+#    ram         = number
+#    disk_volume = number
+#  }))
+#}
+
+variable "each_vm" {
+  default = [
+    {
+      vm_name     = "main"
+      cpu         = 4
+      ram         = 8
+      disk_volume = 50
+      core_fraction = 20
+    },
+    {
+      vm_name     = "replica"
+      cpu         = 2
+      ram         = 4
+      disk_volume = 30
+      core_fraction = 5
+    }
+  ]
+}
