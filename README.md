@@ -162,6 +162,14 @@ storage ansible_host=<внешний ip-адрес> fqdn=<полное доме�
 ${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"] platform_id=${i["platform_id "]}}
 %{~ endfor ~}
 ```
+Исправленный скрипт:
+
+```
+[webservers]
+%{~ for i in webservers ~}
+${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"]} platform_id=${i["platform_id"]}
+%{~ endfor ~}
+```
 
 ### Критерии оценки
 
