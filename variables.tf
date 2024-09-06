@@ -25,6 +25,11 @@ variable "default_cidr" {
   description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
 }
 
+variable "ssh_key" {
+  type        = string
+  description = "ssh_key"
+}
+
 variable "vpc_name" {
   type        = string
   default     = "develop"
