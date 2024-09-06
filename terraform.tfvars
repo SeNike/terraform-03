@@ -1,4 +1,5 @@
 web_platform = "standard-v3"
+web_nat = false
 
 web_resources = [
   {
@@ -11,6 +12,7 @@ web_resources = [
 
 storage_platform = "standard-v3"
 storage_disk_type = "network-hdd"
+storage_nat = false
 
 storage_resources = [
   {
@@ -21,6 +23,7 @@ storage_resources = [
 ]
 
 each_platform = "standard-v3"
+each_nat = false
 
 each_vm = [
     {

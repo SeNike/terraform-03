@@ -106,3 +106,22 @@ variable "storage_disk_type" {
   default     = "network-hdd"
   description = "storage_disk_type"
 }
+
+variable "each_nat" {
+  type        = bool
+  default     = true
+  description = "nat enable"
+}
+
+variable "web_nat" {
+  type        = bool
+  default     = true
+  description = "nat enable"
+}
+
+variable "storage_nat" {
+  type        = bool
+  default     = true
+  description = "nat enable"
+}
+

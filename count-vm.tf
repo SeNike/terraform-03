@@ -2,6 +2,7 @@ resource "yandex_compute_instance" "web" {
   count = var.web_inst_quantity
   name = "web-${count.index + 1}"
   platform_id = var.web_platform
+  
   resources {
     cores         = var.web_resources[0].cores
     memory        = var.web_resources[0].memory
@@ -18,7 +19,7 @@ resource "yandex_compute_instance" "web" {
   }
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
-    nat       = true
+    nat       = var.web_nat
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
 

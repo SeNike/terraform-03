@@ -30,7 +30,7 @@ resource "yandex_compute_instance" "storage" {
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
     security_group_ids = [yandex_vpc_security_group.example.id]
-    nat       = true
+    nat       = var.storage_nat
   }
   # Подключение дополнительных дисков с помощью dynamic и for_each
   dynamic "secondary_disk" {
